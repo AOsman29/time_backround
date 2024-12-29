@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elapsed Time Since Birth</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 2rem;
+      overflow: hidden;
+    }
+
+    #elapsed-time {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="elapsed-time">
+    <div>Time Elapsed Since I Was Born:</div>
+    <div id="time">Loading...</div>
+  </div>
+
+  <script>
+    // Set your birth date here
+    const birthDate = new Date('YYYY-MM-DDTHH:MM:SS'); // Replace with your birth date, e.g., '1995-06-15T12:00:00'
+
+    function updateElapsedTime() {
+      const now = new Date();
+      const elapsed = now - birthDate;
+
+      const seconds = Math.floor(elapsed / 1000) % 60;
+      const minutes = Math.floor(elapsed / (1000 * 60)) % 60;
+      const hours = Math.floor(elapsed / (1000 * 60 * 60)) % 24;
+      const days = Math.floor(elapsed / (1000 * 60 * 60 * 24)) % 365;
+      const years = Math.floor(elapsed / (1000 * 60 * 60 * 24 * 365));
+
+      const timeString = `${years} years, ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+
+      document.getElementById('time').textContent = timeString;
+    }
+
+    // Update the time every second
+    setInterval(updateElapsedTime, 1000);
+    updateElapsedTime();
+  </script>
+</body>
+
+</html>
